@@ -1,0 +1,31 @@
+---
+title: los AUDIS molan              #- Hay que cambiarlo
+image: imagenes/mifoto.jpeg      #- poned una foto vuestra
+about:
+  template: solana       #- {jolla, solana, ...}
+  image-width: 16em         #- https://cybmeta.com/em-y-rem
+  image-shape: rectangle    #- {rectangle, round, rounded}
+  links:
+    - icon: envelope
+      text: e-mail
+      url: "aaron:<luisa9@alumni.uv.es>"            #- pon tu e-mail
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/<tu-usuario-Linkedin>     #- linkedin
+    - icon: github
+      text: Github
+      href: https://github.com/<tu-usuario-github>         #- Github
+css: my_styles.css
+---
+        
+Hola, soy Luis Aarón Alarcón Saiz
+      
+Esta web sirve para presentar el trabajo final individual para la asignatura "Programación y manejo de datos en la era Del Big Data", optativa de GECO en la Facultad de Economía de la Universitat de València.
+
+La web de la asignatura está [aquí](https://perezp44.github.io/intro-ds-23-24-web/){target="_blank"} y los trabajos de mis compañeros de curso puedes verlos [aquí](https://perezp44.github.io/intro-ds-23-24-web/05-trabajos-estudiantes.html){target="_blank"}.
+
+
+Mi trabajo lleva por título : "los AUDIS molan". El objetivo es analizar un poco como funciona el mercado de segunda mano en relación a los audis, elijo estos ya que son los coches que mas me gustan, de esta manera podemos ver muchas características y modelos de esta gran marca
+
+
+El trabajo puede verse [aquí](my_trabajo_BigData.html).
