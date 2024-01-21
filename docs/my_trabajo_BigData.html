@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Luis Aarón Alarcón Saiz">
+<meta name="description" content="Análisis de las características de los coches que se ponen en venta de la marca Audi en UK">
+<title>AUDI - los Audis molan</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./imagenes/my_favicon_uv.jpeg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #FF0000;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #FF0000;
+      }
+</style>
+<link rel="stylesheet" href="my_styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./LOGO.jpg" alt="" class="navbar-logo"></a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">AUDI</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="./index.html" rel="" target=""><i class="bi bi-house-door" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link active" href="./my_trabajo_BigData.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Trabajo individual</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="aaron:luisa9@alumni.uv.es" rel="" target=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <div class="quarto-title-block"><div><h1 class="title">los Audis molan</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+                  <div>
+        <div class="description">
+          Análisis de las características de los coches que se ponen en venta de la marca Audi en UK
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">trabajo BigData</div>
+                <div class="quarto-category">AUDI</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Luis Aarón Alarcón Saiz </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www.uv.es">
+              Universitat de València
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">21 de enero de 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Índice</h2>
+   
+  <ul>
+<li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li>
+<a href="#precios-por-modelo" id="toc-precios-por-modelo" class="nav-link" data-scroll-target="#precios-por-modelo">Precios por modelo</a>
+  <ul class="collapse">
+<li><a href="#audi-q2" id="toc-audi-q2" class="nav-link" data-scroll-target="#audi-q2">Audi Q2</a></li>
+  </ul>
+</li>
+  <li><a href="#concentraci%C3%B3n-de-kilometraje-por-modelo" id="toc-concentración-de-kilometraje-por-modelo" class="nav-link" data-scroll-target="#concentraci%C3%B3n-de-kilometraje-por-modelo">Concentración de kilometraje por modelo</a></li>
+  <li><a href="#n%C3%BAmero-de-modelos-en-venta-por-la-marca" id="toc-número-de-modelos-en-venta-por-la-marca" class="nav-link" data-scroll-target="#n%C3%BAmero-de-modelos-en-venta-por-la-marca">Número de modelos en venta por la marca</a></li>
+  <li><a href="#gr%C3%A1fico-para-precio-a%C3%B1o-kilometraje" id="toc-gráfico-para-precio-año-kilometraje" class="nav-link" data-scroll-target="#gr%C3%A1fico-para-precio-a%C3%B1o-kilometraje">Gráfico para precio, año, kilometraje</a></li>
+  <li><a href="#correlaci%C3%B3n-entre-variables" id="toc-correlación-entre-variables" class="nav-link" data-scroll-target="#correlaci%C3%B3n-entre-variables">Correlación entre variables</a></li>
+  <li>
+<a href="#bonus-track-grafico-problematico" id="toc-bonus-track-grafico-problematico" class="nav-link" data-scroll-target="#bonus-track-grafico-problematico">Bonus track: grafico problematico</a>
+  <ul class="collapse">
+<li><a href="#informaci%C3%B3n-sobre-la-sesi%C3%B3n" id="toc-información-sobre-la-sesión" class="nav-link" data-scroll-target="#informaci%C3%B3n-sobre-la-sesi%C3%B3n">Información sobre la sesión</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content"><section id="intro" class="level2"><h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>El objetivo de este trabajo será investigar ciertas variables o características de los coches de segunda mano que se ponen en venta en UK para ver ciertas tendencias relacionadas con el precio, modelo,edad del coche, kilometraje, tamaño del motor, … para ello, haremos diferentes gráficos en contenido y forma para poder sacar conclusiones sobre todas estas variables</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="./imagenes/LOGO.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">LOGO</figcaption></figure>
+</div>
+<hr></section><section id="precios-por-modelo" class="level2"><h2 class="anchored" data-anchor-id="precios-por-modelo">Precios por modelo</h2>
+<p>El propósito de este gráfico es poder ver con un simple vistazo el rango de precios por los cuales se mueven cada modelo de la marca en el mercado, lo primero que hay que destacar, es que se ha cogido una muestra aleatoria para hacer este gráfico ya que si no, el gráfico se vería muy saturado y de esta manera lo podemos ver mejor.</p>
+<p>Como vemos, hay mucha variabilidad en los precios de los modelos (en algunos modelos no tanto), para esto puede haber varias explicaciones:</p>
+<p>En primer lugar y más evidente, es que conforme pasan los años, los coches van perdiendo valor y esta pérdida cada vez es mayor.</p>
+<p>También tenemos que pensar que cuanto más caro es el modelo de serie, más va a caer su precio en relación con coches más asequibles, esto es lo que puede estar pasando por ejemplo con el modelo A1 y el Q7.</p>
+<p>Por ejemplo hay modelos como el Q2 que se llevan fabricando desde hace poco tiempo, por lo que esto tambien podría explicar su baja variabilidad</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Código</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("tidyverse")</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Importar datos desde el archivo CSV</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>datos_audi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"docs/audi.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>modelos_comunes <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">summarize</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Frequency)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="fu">pull</span>(model)</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># Muestreo aleatorio de puntos por modelo (ajusta la cantidad según sea necesario)</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>sampled_data <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span> </span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">filter</span>(model <span class="sc">%in%</span> modelos_comunes) <span class="sc">%&gt;%</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">50</span>) </span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co"># Crea el gráfico de violín con datos muestreados y ajustes estéticos personalizados</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="fu">ggplot</span>(sampled_data,</span>
+<span id="cb1-22"><a href="#cb1-22"></a>       <span class="fu">aes</span>(<span class="at">x =</span> model, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"#69b3a2"</span>, <span class="at">color =</span> <span class="st">"#404080"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">"#404080"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de Precios por Modelo (Audi)"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26"></a>       <span class="at">x =</span> <span class="st">"Modelo"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27"></a>       <span class="at">y =</span> <span class="st">"Precio"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28"></a>       <span class="at">subtitle =</span> <span class="st">"Muestra aleatoria para mejorar la legibilidad"</span>) <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb1-31"><a href="#cb1-31"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb1-32"><a href="#cb1-32"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb1-33"><a href="#cb1-33"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb1-34"><a href="#cb1-34"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb1-35"><a href="#cb1-35"></a>        <span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span>  <span class="co"># Elimina la leyenda</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="my_trabajo_BigData_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<section id="audi-q2" class="level3"><h3 class="anchored" data-anchor-id="audi-q2">Audi Q2</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="./imagenes/Q2.webp" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">un Q2 Brutal</figcaption></figure>
+</div>
+<hr></section></section><section id="concentración-de-kilometraje-por-modelo" class="level2"><h2 class="anchored" data-anchor-id="concentración-de-kilometraje-por-modelo">Concentración de kilometraje por modelo</h2>
+<p>En este caso, estamos analizando el kilometraje que tienen los modelos en venta más importantes de Audi de media, este gráfico nos puede dar una idea de lo que nos vamos a encontrar en el mercado, ya que los kilómetros recorridos por un coche es una variable importantísima a la hora de comprar un coche de segunda mano, como podemos ver, la mayoría de la oferta se encuentra alrededor de los primeros 40.000 kilómetros, muy pocos kilómetros para este tipo de coches. sorprende el caso del Q2, aunque como señalabamos antes, es un modelo que se empezó a fabricar hace poco, por lo que es normal que se ubique en esa franja la mayoría de la oferta</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Código</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># Filtra para incluir solo los 10 modelos más comunes</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>modelos_comunes <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">summarize</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Frequency)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">pull</span>(model)</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">ggplot</span>(datos_audi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model <span class="sc">%in%</span> modelos_comunes),</span>
+<span id="cb2-11"><a href="#cb2-11"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mileage, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Densidad de Kilometraje por modelo"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14"></a>       <span class="at">x =</span> <span class="st">"Kilometraje"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15"></a>       <span class="at">fill =</span> <span class="st">"Modelo"</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Modelo"</span>)) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">100000</span>)  <span class="co"># Ajusta el límite del eje x</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="my_trabajo_BigData_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="número-de-modelos-en-venta-por-la-marca" class="level2"><h2 class="anchored" data-anchor-id="número-de-modelos-en-venta-por-la-marca">Número de modelos en venta por la marca</h2>
+<p>En este caso, he decidido hacer una gráfica de pastel para poder ver cuales son los modelos que más se encuentran en el mercado, este gráfico también es muy importante, ya que cuanto más coches haya de un mismo modelo en venta más posibilidades tendremos de encontrar el coche que más se adapte a nuestras necesidades y puede que, en el caso de que no haya mucha demanda, se produzca un descenso de precios por la oferta excesiva de estos</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Código</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Calcula la proporción de modelos</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>proporcion_modelos <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_audi<span class="sc">$</span>model) <span class="sc">/</span> <span class="fu">nrow</span>(datos_audi)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># Define un umbral para filtrar modelos con baja proporción</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>umbral_proporcion <span class="ot">&lt;-</span> <span class="fl">0.02</span>  <span class="co"># Puedes ajustar este valor según tus necesidades</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># Filtra los modelos por encima del umbral</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>modelos_filtrados <span class="ot">&lt;-</span> <span class="fu">names</span>(proporcion_modelos[proporcion_modelos <span class="sc">&gt;=</span> umbral_proporcion])</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># Filtra el conjunto de datos original</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>datos_filtrados <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span> </span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="fu">filter</span>(model <span class="sc">%in%</span> modelos_filtrados)</span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co"># Crea el gráfico circular mejorado</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos_filtrados, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Paired"</span>) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proporción de Modelos de Coches Audi"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24"></a>       <span class="at">fill =</span> <span class="st">"Modelo"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25"></a>       <span class="at">caption =</span> <span class="st">"Modelos con proporción superior al umbral"</span>) <span class="sc">+</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb3-28"><a href="#cb3-28"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">10</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="my_trabajo_BigData_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr></section><section id="gráfico-para-precio-año-kilometraje" class="level2"><h2 class="anchored" data-anchor-id="gráfico-para-precio-año-kilometraje">Gráfico para precio, año, kilometraje</h2>
+<p>De todos los gráficos, sin duda este es el mas revelador y el que más me gusta debido a que se puede analizar precio, año, kilometraje y modelo en un mismo gráfico, destacar de nuevo que lo hemos hecho a partir de una muestra ya que si no el gráfico estaría muy saturado</p>
+<p>como podemos ver, hay una correlación directa entre el precio y el año, cuantos mas años tiene el coche mas valor pierde, despues también podemos ver como los coches con menos años tienen menos kilómetros (se determina con el tamaño de las burbujas) y ademas cuantos menos años tienen mayor es su valor.</p>
+<p>tambien vemos como los modelos tales como el Q7 son los más caros y el A3 los mas baratos</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Código</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># Asegúrate de que las variables de interés sean numéricas</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>datos_filtrados<span class="sc">$</span>price <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(datos_filtrados<span class="sc">$</span>price)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>datos_filtrados<span class="sc">$</span>mileage <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(datos_filtrados<span class="sc">$</span>mileage)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>datos_filtrados<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(datos_filtrados<span class="sc">$</span>year)</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># Convierte la variable 'year' a formato de fecha</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>datos_filtrados<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(datos_filtrados<span class="sc">$</span>year, <span class="st">"-01-01"</span>))</span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># Muestra un subconjunto aleatorio de datos (ajusta el tamaño según sea necesario)</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># Para reproducibilidad</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>datos_muestreados <span class="ot">&lt;-</span> datos_filtrados[<span class="fu">sample</span>(<span class="fu">nrow</span>(datos_filtrados), <span class="dv">250</span>), ]</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co"># Crea el gráfico de burbujas mejorado</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="fu">ggplot</span>(datos_muestreados, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> price, <span class="at">size =</span> mileage, <span class="at">color =</span> <span class="fu">factor</span>(model))) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">stroke =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Burbujas para Precio, Kilometraje y Año"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20"></a>       <span class="at">x =</span> <span class="st">"Año"</span>,</span>
+<span id="cb4-21"><a href="#cb4-21"></a>       <span class="at">y =</span> <span class="st">"Precio"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22"></a>       <span class="at">size =</span> <span class="st">"Kilometraje"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23"></a>       <span class="at">color =</span> <span class="st">"Año"</span>) <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"black"</span>),  <span class="co"># Ajusta el fondo de la leyenda</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>        <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"black"</span>)) <span class="sc">+</span>  <span class="co"># Ajusta el fondo de las teclas de la leyenda</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> model), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">nudge_x =</span> <span class="fl">0.2</span>, <span class="at">nudge_y =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)  <span class="co"># Oculta la leyenda de color</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="my_trabajo_BigData_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr></section><section id="correlación-entre-variables" class="level2"><h2 class="anchored" data-anchor-id="correlación-entre-variables">Correlación entre variables</h2>
+<p>Este gráfico seria un resumen de la correlacion entre ls distintas variables que estabamos analizando, como podemos ver, muchas de nuestras explicaciones se cumplen , como por ejemplo la relacion positiva entre precio y año de fabricacion, o la correlación negativa entre el año y el kilometraje, tambien esa relación negativa entre el precio y el kilometraje…</p>
+<p>una de las variables que no hemos observado es el tamaño del motor, que como podemos ver tiene una relación positiva con el precio, los coches con motor mas grandes tambien son más caros</p>
+<p>otra variable interesante es el consumo que en este caso viene en millas por galón, podemos ver que tiene correlación negativa con el precio del coche, hay que pensar que un coche que gasta mucho combustible es un problema para mantanerlo y esto se tiene en cuenta a la hora de comprar un coche</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Código</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Calcula la matriz de correlación</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos_audi[, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"price"</span>, <span class="st">"mileage"</span>, <span class="st">"tax"</span>, <span class="st">"mpg"</span>, <span class="st">"engineSize"</span>)])</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># Cambia los nombres de las filas y columnas</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="fu">rownames</span>(cor_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Año"</span>, <span class="st">"Precio"</span>, <span class="st">"Kilometraje"</span>, <span class="st">"Impuesto"</span>, <span class="st">"MPG"</span>, <span class="st">"Tamaño del Motor"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="fu">colnames</span>(cor_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Año"</span>, <span class="st">"Precio"</span>, <span class="st">"Kilometraje"</span>, <span class="st">"Impuesto"</span>, <span class="st">"MPG"</span>, <span class="st">"Tamaño del Motor"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># Configura un color más agradable para el mapa de calor</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>color_palette <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#BB4444"</span>, <span class="st">"#EE9988"</span>, <span class="st">"#FFFFFF"</span>, <span class="st">"#77AADD"</span>, <span class="st">"#4477AA"</span>))</span>
+<span id="cb5-13"><a href="#cb5-13"></a></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co"># Crea el mapa de calor</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">corrplot</span>(cor_matrix, </span>
+<span id="cb5-16"><a href="#cb5-16"></a>         <span class="at">method =</span> <span class="st">"color"</span>, </span>
+<span id="cb5-17"><a href="#cb5-17"></a>         <span class="at">col =</span> <span class="fu">color_palette</span>(<span class="dv">200</span>),</span>
+<span id="cb5-18"><a href="#cb5-18"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
+<span id="cb5-21"><a href="#cb5-21"></a>         <span class="at">diag =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="my_trabajo_BigData_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr></section><section id="bonus-track-grafico-problematico" class="level2"><h2 class="anchored" data-anchor-id="bonus-track-grafico-problematico">Bonus track: grafico problematico</h2>
+<p>Este grafico lo añado como un extra ya que sin duda ha sido el más problematico, no me dejaba renderizar el archivo QMD, por lo que la solución que decidi tomar es guardar el gráfico en un HTML y añadirlo al QMD.</p>
+<p>Este gráfico es el mas divertido que he hecho ya que ese efecto 3D junto a la posibilidad de poder moverse es muy atractivo. Por otro lado también destacar la posibilidad de ver las características de cada punto solo con pasar el raton por encima.</p>
+<iframe src="scatter3d_audi_mejorado.html" width="800" height="600">
+</iframe>
+<hr>
+<p><br></p>
+<section id="información-sobre-la-sesión" class="level3"><h3 class="anchored" data-anchor-id="información-sobre-la-sesión">Información sobre la sesión</h3>
+<p>Abajo muestro mi entorno de trabajo y paquetes utilizados</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<details closed=""><summary><span title="Click to Expand"> current session info </span>
+</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2"></a>─ Session info ───────────────────────────────────────────────────────────────</span>
+<span id="cb6-3"><a href="#cb6-3"></a> setting  value</span>
+<span id="cb6-4"><a href="#cb6-4"></a> version  R version <span class="dv">4</span>.<span class="fl">3.1</span> (<span class="dv">2023-06-16</span> ucrt)</span>
+<span id="cb6-5"><a href="#cb6-5"></a> os       Windows <span class="dv">10</span> <span class="fu">x64</span> (build <span class="dv">19045</span>)</span>
+<span id="cb6-6"><a href="#cb6-6"></a> system   x86_64, mingw32</span>
+<span id="cb6-7"><a href="#cb6-7"></a> ui       RTerm</span>
+<span id="cb6-8"><a href="#cb6-8"></a> <span class="fu">language</span> (EN)</span>
+<span id="cb6-9"><a href="#cb6-9"></a> collate  Spanish_Spain.utf8</span>
+<span id="cb6-10"><a href="#cb6-10"></a> ctype    Spanish_Spain.utf8</span>
+<span id="cb6-11"><a href="#cb6-11"></a> tz       Europe<span class="sc">/</span>Madrid</span>
+<span id="cb6-12"><a href="#cb6-12"></a> date     <span class="dv">2024-01-21</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a> pandoc   <span class="dv">3</span>.<span class="fl">1.1</span> <span class="sc">@</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>aaron<span class="sc">/</span>Downloads<span class="sc">/</span>RStudio<span class="sc">/</span>resources<span class="sc">/</span>app<span class="sc">/</span>bin<span class="sc">/</span>quarto<span class="sc">/</span>bin<span class="sc">/</span>tools<span class="sc">/</span> (via rmarkdown)</span>
+<span id="cb6-14"><a href="#cb6-14"></a></span>
+<span id="cb6-15"><a href="#cb6-15"></a>─ Packages ───────────────────────────────────────────────────────────────────</span>
+<span id="cb6-16"><a href="#cb6-16"></a> package      <span class="sc">*</span> version <span class="fu">date</span> (UTC) lib source</span>
+<span id="cb6-17"><a href="#cb6-17"></a> bit            <span class="dv">4</span>.<span class="fl">0.5</span>   <span class="dv">2022-11-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-18"><a href="#cb6-18"></a> bit64          <span class="dv">4</span>.<span class="fl">0.5</span>   <span class="dv">2020-08-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-19"><a href="#cb6-19"></a> cli            <span class="dv">3</span>.<span class="fl">6.2</span>   <span class="dv">2023-12-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-20"><a href="#cb6-20"></a> clipr          <span class="dv">0</span>.<span class="fl">8.0</span>   <span class="dv">2022-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-21"><a href="#cb6-21"></a> colorspace     <span class="fl">2.1</span><span class="dv">-0</span>   <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-22"><a href="#cb6-22"></a> corrplot     <span class="sc">*</span> <span class="fl">0.92</span>    <span class="dv">2021-11-18</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-23"><a href="#cb6-23"></a> crayon         <span class="dv">1</span>.<span class="fl">5.2</span>   <span class="dv">2022-09-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-24"><a href="#cb6-24"></a> desc           <span class="dv">1</span>.<span class="fl">4.2</span>   <span class="dv">2022-09-08</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-25"><a href="#cb6-25"></a> details        <span class="dv">0</span>.<span class="fl">3.0</span>   <span class="dv">2022-03-27</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-26"><a href="#cb6-26"></a> digest         <span class="dv">0</span>.<span class="fl">6.33</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-27"><a href="#cb6-27"></a> dplyr        <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">1.4</span>   <span class="dv">2023-11-17</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-28"><a href="#cb6-28"></a> evaluate       <span class="fl">0.23</span>    <span class="dv">2023-11-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-29"><a href="#cb6-29"></a> fansi          <span class="dv">1</span>.<span class="fl">0.6</span>   <span class="dv">2023-12-08</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-30"><a href="#cb6-30"></a> farver         <span class="dv">2</span>.<span class="fl">1.1</span>   <span class="dv">2022-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-31"><a href="#cb6-31"></a> fastmap        <span class="dv">1</span>.<span class="fl">1.1</span>   <span class="dv">2023-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-32"><a href="#cb6-32"></a> forcats      <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.0</span>   <span class="dv">2023-01-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-33"><a href="#cb6-33"></a> generics       <span class="dv">0</span>.<span class="fl">1.3</span>   <span class="dv">2022-07-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-34"><a href="#cb6-34"></a> ggplot2      <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">4.4</span>   <span class="dv">2023-10-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-35"><a href="#cb6-35"></a> glue           <span class="dv">1</span>.<span class="fl">6.2</span>   <span class="dv">2022-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-36"><a href="#cb6-36"></a> gtable         <span class="dv">0</span>.<span class="fl">3.4</span>   <span class="dv">2023-08-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-37"><a href="#cb6-37"></a> hms            <span class="dv">1</span>.<span class="fl">1.3</span>   <span class="dv">2023-03-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-38"><a href="#cb6-38"></a> htmltools      <span class="dv">0</span>.<span class="fl">5.6</span>   <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-39"><a href="#cb6-39"></a> httr           <span class="dv">1</span>.<span class="fl">4.7</span>   <span class="dv">2023-08-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-40"><a href="#cb6-40"></a> jsonlite       <span class="dv">1</span>.<span class="fl">8.8</span>   <span class="dv">2023-12-04</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-41"><a href="#cb6-41"></a> knitr          <span class="fl">1.45</span>    <span class="dv">2023-10-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-42"><a href="#cb6-42"></a> labeling       <span class="dv">0</span>.<span class="fl">4.3</span>   <span class="dv">2023-08-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-43"><a href="#cb6-43"></a> lifecycle      <span class="dv">1</span>.<span class="fl">0.4</span>   <span class="dv">2023-11-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-44"><a href="#cb6-44"></a> lubridate    <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">9.2</span>   <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-45"><a href="#cb6-45"></a> magrittr       <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2022-03-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-46"><a href="#cb6-46"></a> munsell        <span class="dv">0</span>.<span class="fl">5.0</span>   <span class="dv">2018-06-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-47"><a href="#cb6-47"></a> pillar         <span class="dv">1</span>.<span class="fl">9.0</span>   <span class="dv">2023-03-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-48"><a href="#cb6-48"></a> pkgconfig      <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2019-09-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-49"><a href="#cb6-49"></a> png            <span class="fl">0.1</span><span class="dv">-8</span>   <span class="dv">2022-11-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb6-50"><a href="#cb6-50"></a> purrr        <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.2</span>   <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-51"><a href="#cb6-51"></a> R6             <span class="dv">2</span>.<span class="fl">5.1</span>   <span class="dv">2021-08-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-52"><a href="#cb6-52"></a> RColorBrewer   <span class="fl">1.1</span><span class="dv">-3</span>   <span class="dv">2022-04-03</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-53"><a href="#cb6-53"></a> readr        <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">1.4</span>   <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-54"><a href="#cb6-54"></a> rlang          <span class="dv">1</span>.<span class="fl">1.2</span>   <span class="dv">2023-11-04</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-55"><a href="#cb6-55"></a> rmarkdown      <span class="fl">2.24</span>    <span class="dv">2023-08-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-56"><a href="#cb6-56"></a> rprojroot      <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2022-04-02</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-57"><a href="#cb6-57"></a> rstudioapi     <span class="dv">0</span>.<span class="fl">15.0</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-58"><a href="#cb6-58"></a> scales         <span class="dv">1</span>.<span class="fl">3.0</span>   <span class="dv">2023-11-28</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-59"><a href="#cb6-59"></a> sessioninfo    <span class="dv">1</span>.<span class="fl">2.2</span>   <span class="dv">2021-12-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-60"><a href="#cb6-60"></a> stringi        <span class="dv">1</span>.<span class="fl">8.3</span>   <span class="dv">2023-12-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-61"><a href="#cb6-61"></a> stringr      <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">5.1</span>   <span class="dv">2023-11-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-62"><a href="#cb6-62"></a> tibble       <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">2.1</span>   <span class="dv">2023-03-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-63"><a href="#cb6-63"></a> tidyr        <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">3.0</span>   <span class="dv">2023-01-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-64"><a href="#cb6-64"></a> tidyselect     <span class="dv">1</span>.<span class="fl">2.0</span>   <span class="dv">2022-10-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-65"><a href="#cb6-65"></a> tidyverse    <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">0.0</span>   <span class="dv">2023-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-66"><a href="#cb6-66"></a> timechange     <span class="dv">0</span>.<span class="fl">2.0</span>   <span class="dv">2023-01-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-67"><a href="#cb6-67"></a> tzdb           <span class="dv">0</span>.<span class="fl">4.0</span>   <span class="dv">2023-05-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-68"><a href="#cb6-68"></a> utf8           <span class="dv">1</span>.<span class="fl">2.4</span>   <span class="dv">2023-10-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-69"><a href="#cb6-69"></a> vctrs          <span class="dv">0</span>.<span class="fl">6.5</span>   <span class="dv">2023-12-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-70"><a href="#cb6-70"></a> viridisLite    <span class="dv">0</span>.<span class="fl">4.2</span>   <span class="dv">2023-05-02</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-71"><a href="#cb6-71"></a> vroom          <span class="dv">1</span>.<span class="fl">6.3</span>   <span class="dv">2023-04-28</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-72"><a href="#cb6-72"></a> withr          <span class="dv">2</span>.<span class="fl">5.2</span>   <span class="dv">2023-10-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-73"><a href="#cb6-73"></a> xfun           <span class="fl">0.41</span>    <span class="dv">2023-11-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-74"><a href="#cb6-74"></a> xml2           <span class="dv">1</span>.<span class="fl">3.5</span>   <span class="dv">2023-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb6-75"><a href="#cb6-75"></a> yaml           <span class="dv">2</span>.<span class="fl">3.8</span>   <span class="dv">2023-12-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.2</span>)</span>
+<span id="cb6-76"><a href="#cb6-76"></a></span>
+<span id="cb6-77"><a href="#cb6-77"></a> [<span class="dv">1</span>] C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>aaron<span class="sc">/</span>AppData<span class="sc">/</span>Local<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">4.3</span></span>
+<span id="cb6-78"><a href="#cb6-78"></a> [<span class="dv">2</span>] C<span class="sc">:</span><span class="er">/</span>Program Files<span class="sc">/</span>R<span class="sc">/</span>R<span class="dv">-4</span>.<span class="fl">3.1</span><span class="sc">/</span>library</span>
+<span id="cb6-79"><a href="#cb6-79"></a></span>
+<span id="cb6-80"><a href="#cb6-80"></a>──────────────────────────────────────────────────────────────────────────────</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><p><br></p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="an">title:</span><span class="co"> "los Audis molan"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="an">description:</span><span class="co"> "Análisis de las características de los coches que se ponen en venta de la marca Audi en UK"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="an">author:</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">  - name: Luis Aarón Alarcón Saiz</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">    affiliation: Universitat de València</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">    affiliation-url: https://www.uv.es</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="an">date:</span><span class="co"> 2024-01-21                           #--</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="an">categories:</span><span class="co"> [trabajo BigData, AUDI]   #--</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="an">image:</span><span class="co"> "./imagenes/LOGO.jpg"</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="an">title-block-banner:</span><span class="co"> true #- {true, false, "green","#AA0000"}</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="an">title-block-banner-color:</span><span class="co"> "#FF0000"     </span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="an">toc-depth:</span><span class="co"> 3</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="an">smooth-scroll:</span><span class="co"> true</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">  html:</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">    #backgroundcolor: "#F1F3F4"</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">    #embed-resources: true</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co">    link-external-newwindow: true</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="an">code-link:</span><span class="co"> true</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">---</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a></span>
+<span id="cb7-24"><a href="#cb7-24"></a></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="fu">## Intro </span></span>
+<span id="cb7-26"><a href="#cb7-26"></a></span>
+<span id="cb7-27"><a href="#cb7-27"></a>El objetivo de este trabajo será investigar ciertas variables o características de los coches de segunda mano que se ponen en venta en UK para ver ciertas tendencias relacionadas con el precio, modelo,edad del coche, kilometraje, tamaño del motor, ... para ello, haremos diferentes gráficos en contenido y forma para poder sacar conclusiones sobre todas estas variables</span>
+<span id="cb7-28"><a href="#cb7-28"></a></span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="al">![LOGO](./imagenes/LOGO.jpg)</span></span>
+<span id="cb7-30"><a href="#cb7-30"></a></span>
+<span id="cb7-31"><a href="#cb7-31"></a>---</span>
+<span id="cb7-32"><a href="#cb7-32"></a></span>
+<span id="cb7-33"><a href="#cb7-33"></a><span class="fu">## Precios por modelo</span></span>
+<span id="cb7-34"><a href="#cb7-34"></a></span>
+<span id="cb7-35"><a href="#cb7-35"></a>El propósito de este gráfico es poder ver con un simple vistazo el rango de precios por los cuales se mueven cada modelo de la marca en el mercado, lo primero que hay que destacar, es que se ha cogido una muestra aleatoria para hacer este gráfico ya que si no, el gráfico se vería muy saturado y de esta manera lo podemos ver mejor.</span>
+<span id="cb7-36"><a href="#cb7-36"></a></span>
+<span id="cb7-37"><a href="#cb7-37"></a>Como vemos, hay mucha variabilidad en los precios de los modelos (en algunos modelos no tanto), para esto puede haber varias explicaciones:</span>
+<span id="cb7-38"><a href="#cb7-38"></a></span>
+<span id="cb7-39"><a href="#cb7-39"></a>En primer lugar y más evidente, es que conforme pasan los años, los coches van perdiendo valor y esta pérdida cada vez es mayor.</span>
+<span id="cb7-40"><a href="#cb7-40"></a></span>
+<span id="cb7-41"><a href="#cb7-41"></a>También tenemos que pensar que cuanto más caro es el modelo de serie, más va a caer su precio en relación con coches más asequibles, esto es lo que puede estar pasando por ejemplo con el modelo A1 y el Q7.</span>
+<span id="cb7-42"><a href="#cb7-42"></a></span>
+<span id="cb7-43"><a href="#cb7-43"></a>Por ejemplo hay modelos como el Q2 que se llevan fabricando desde hace poco tiempo, por lo que esto tambien podría explicar su baja variabilidad</span>
+<span id="cb7-46"><a href="#cb7-46"></a><span class="in">```{r}</span></span>
+<span id="cb7-47"><a href="#cb7-47"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-48"><a href="#cb7-48"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-49"><a href="#cb7-49"></a><span class="co"># install.packages("tidyverse")</span></span>
+<span id="cb7-50"><a href="#cb7-50"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-51"><a href="#cb7-51"></a><span class="co"># Importar datos desde el archivo CSV</span></span>
+<span id="cb7-52"><a href="#cb7-52"></a>datos_audi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"docs/audi.csv"</span>)</span>
+<span id="cb7-53"><a href="#cb7-53"></a></span>
+<span id="cb7-54"><a href="#cb7-54"></a></span>
+<span id="cb7-55"><a href="#cb7-55"></a>modelos_comunes <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span></span>
+<span id="cb7-56"><a href="#cb7-56"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb7-57"><a href="#cb7-57"></a>  <span class="fu">summarize</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb7-58"><a href="#cb7-58"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Frequency)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-59"><a href="#cb7-59"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-60"><a href="#cb7-60"></a>  <span class="fu">pull</span>(model)</span>
+<span id="cb7-61"><a href="#cb7-61"></a></span>
+<span id="cb7-62"><a href="#cb7-62"></a><span class="co"># Muestreo aleatorio de puntos por modelo (ajusta la cantidad según sea necesario)</span></span>
+<span id="cb7-63"><a href="#cb7-63"></a>sampled_data <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span> </span>
+<span id="cb7-64"><a href="#cb7-64"></a>  <span class="fu">filter</span>(model <span class="sc">%in%</span> modelos_comunes) <span class="sc">%&gt;%</span></span>
+<span id="cb7-65"><a href="#cb7-65"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb7-66"><a href="#cb7-66"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">50</span>) </span>
+<span id="cb7-67"><a href="#cb7-67"></a></span>
+<span id="cb7-68"><a href="#cb7-68"></a><span class="co"># Crea el gráfico de violín con datos muestreados y ajustes estéticos personalizados</span></span>
+<span id="cb7-69"><a href="#cb7-69"></a><span class="fu">ggplot</span>(sampled_data,</span>
+<span id="cb7-70"><a href="#cb7-70"></a>       <span class="fu">aes</span>(<span class="at">x =</span> model, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb7-71"><a href="#cb7-71"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"#69b3a2"</span>, <span class="at">color =</span> <span class="st">"#404080"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-72"><a href="#cb7-72"></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">"#404080"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-73"><a href="#cb7-73"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de Precios por Modelo (Audi)"</span>,</span>
+<span id="cb7-74"><a href="#cb7-74"></a>       <span class="at">x =</span> <span class="st">"Modelo"</span>,</span>
+<span id="cb7-75"><a href="#cb7-75"></a>       <span class="at">y =</span> <span class="st">"Precio"</span>,</span>
+<span id="cb7-76"><a href="#cb7-76"></a>       <span class="at">subtitle =</span> <span class="st">"Muestra aleatoria para mejorar la legibilidad"</span>) <span class="sc">+</span></span>
+<span id="cb7-77"><a href="#cb7-77"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-78"><a href="#cb7-78"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb7-79"><a href="#cb7-79"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-80"><a href="#cb7-80"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-81"><a href="#cb7-81"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb7-82"><a href="#cb7-82"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb7-83"><a href="#cb7-83"></a>        <span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span>  <span class="co"># Elimina la leyenda</span></span>
+<span id="cb7-84"><a href="#cb7-84"></a>  <span class="fu">scale_fill_viridis_c</span>()</span>
+<span id="cb7-85"><a href="#cb7-85"></a></span>
+<span id="cb7-86"><a href="#cb7-86"></a><span class="in">```</span></span>
+<span id="cb7-87"><a href="#cb7-87"></a>---</span>
+<span id="cb7-88"><a href="#cb7-88"></a></span>
+<span id="cb7-89"><a href="#cb7-89"></a><span class="fu">### Audi Q2</span></span>
+<span id="cb7-90"><a href="#cb7-90"></a></span>
+<span id="cb7-91"><a href="#cb7-91"></a><span class="al">![un Q2 Brutal](./imagenes/Q2.webp)</span></span>
+<span id="cb7-92"><a href="#cb7-92"></a></span>
+<span id="cb7-93"><a href="#cb7-93"></a></span>
+<span id="cb7-94"><a href="#cb7-94"></a></span>
+<span id="cb7-95"><a href="#cb7-95"></a>---</span>
+<span id="cb7-96"><a href="#cb7-96"></a></span>
+<span id="cb7-97"><a href="#cb7-97"></a><span class="fu">## Concentración de kilometraje por modelo</span></span>
+<span id="cb7-98"><a href="#cb7-98"></a></span>
+<span id="cb7-99"><a href="#cb7-99"></a>En este caso, estamos analizando el kilometraje que tienen los modelos en venta más importantes de Audi de media, este gráfico nos puede dar una idea de lo que nos vamos a encontrar en el mercado, ya que los kilómetros recorridos por un coche es una variable importantísima a la hora de comprar un coche de segunda mano, como podemos ver, la mayoría de la oferta se encuentra alrededor de los primeros 40.000 kilómetros, muy pocos kilómetros para este tipo de coches.</span>
+<span id="cb7-100"><a href="#cb7-100"></a>sorprende el caso del Q2, aunque como señalabamos antes, es un modelo que se empezó a fabricar hace poco, por lo que es normal que se ubique en esa franja la mayoría de la oferta</span>
+<span id="cb7-101"><a href="#cb7-101"></a></span>
+<span id="cb7-102"><a href="#cb7-102"></a></span>
+<span id="cb7-103"><a href="#cb7-103"></a></span>
+<span id="cb7-106"><a href="#cb7-106"></a><span class="in">```{r}</span></span>
+<span id="cb7-107"><a href="#cb7-107"></a><span class="co">#| eval: true</span></span>
+<span id="cb7-108"><a href="#cb7-108"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-109"><a href="#cb7-109"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-110"><a href="#cb7-110"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-111"><a href="#cb7-111"></a><span class="co"># Filtra para incluir solo los 10 modelos más comunes</span></span>
+<span id="cb7-112"><a href="#cb7-112"></a>modelos_comunes <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span></span>
+<span id="cb7-113"><a href="#cb7-113"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb7-114"><a href="#cb7-114"></a>  <span class="fu">summarize</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb7-115"><a href="#cb7-115"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Frequency)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-116"><a href="#cb7-116"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-117"><a href="#cb7-117"></a>  <span class="fu">pull</span>(model)</span>
+<span id="cb7-118"><a href="#cb7-118"></a></span>
+<span id="cb7-119"><a href="#cb7-119"></a><span class="fu">ggplot</span>(datos_audi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model <span class="sc">%in%</span> modelos_comunes),</span>
+<span id="cb7-120"><a href="#cb7-120"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mileage, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
+<span id="cb7-121"><a href="#cb7-121"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb7-122"><a href="#cb7-122"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Densidad de Kilometraje por modelo"</span>,</span>
+<span id="cb7-123"><a href="#cb7-123"></a>       <span class="at">x =</span> <span class="st">"Kilometraje"</span>,</span>
+<span id="cb7-124"><a href="#cb7-124"></a>       <span class="at">fill =</span> <span class="st">"Modelo"</span>) <span class="sc">+</span></span>
+<span id="cb7-125"><a href="#cb7-125"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-126"><a href="#cb7-126"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb7-127"><a href="#cb7-127"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb7-128"><a href="#cb7-128"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Modelo"</span>)) <span class="sc">+</span></span>
+<span id="cb7-129"><a href="#cb7-129"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">100000</span>)  <span class="co"># Ajusta el límite del eje x</span></span>
+<span id="cb7-130"><a href="#cb7-130"></a><span class="in">```</span></span>
+<span id="cb7-131"><a href="#cb7-131"></a></span>
+<span id="cb7-132"><a href="#cb7-132"></a></span>
+<span id="cb7-133"><a href="#cb7-133"></a><span class="fu">## Número de modelos en venta por la marca</span></span>
+<span id="cb7-134"><a href="#cb7-134"></a></span>
+<span id="cb7-135"><a href="#cb7-135"></a>En este caso, he decidido hacer una gráfica de pastel para poder ver cuales son los modelos que más se encuentran en el mercado, este gráfico también es muy importante, ya que cuanto más coches haya de un mismo modelo en venta más posibilidades tendremos de encontrar el coche que más se adapte a nuestras necesidades y puede que, en el caso de que no haya mucha demanda, se produzca un descenso de precios por la oferta excesiva de estos</span>
+<span id="cb7-136"><a href="#cb7-136"></a></span>
+<span id="cb7-139"><a href="#cb7-139"></a><span class="in">```{r}</span></span>
+<span id="cb7-140"><a href="#cb7-140"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-141"><a href="#cb7-141"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-142"><a href="#cb7-142"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-143"><a href="#cb7-143"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-144"><a href="#cb7-144"></a></span>
+<span id="cb7-145"><a href="#cb7-145"></a><span class="co"># Calcula la proporción de modelos</span></span>
+<span id="cb7-146"><a href="#cb7-146"></a>proporcion_modelos <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_audi<span class="sc">$</span>model) <span class="sc">/</span> <span class="fu">nrow</span>(datos_audi)</span>
+<span id="cb7-147"><a href="#cb7-147"></a></span>
+<span id="cb7-148"><a href="#cb7-148"></a><span class="co"># Define un umbral para filtrar modelos con baja proporción</span></span>
+<span id="cb7-149"><a href="#cb7-149"></a>umbral_proporcion <span class="ot">&lt;-</span> <span class="fl">0.02</span>  <span class="co"># Puedes ajustar este valor según tus necesidades</span></span>
+<span id="cb7-150"><a href="#cb7-150"></a></span>
+<span id="cb7-151"><a href="#cb7-151"></a><span class="co"># Filtra los modelos por encima del umbral</span></span>
+<span id="cb7-152"><a href="#cb7-152"></a>modelos_filtrados <span class="ot">&lt;-</span> <span class="fu">names</span>(proporcion_modelos[proporcion_modelos <span class="sc">&gt;=</span> umbral_proporcion])</span>
+<span id="cb7-153"><a href="#cb7-153"></a></span>
+<span id="cb7-154"><a href="#cb7-154"></a><span class="co"># Filtra el conjunto de datos original</span></span>
+<span id="cb7-155"><a href="#cb7-155"></a>datos_filtrados <span class="ot">&lt;-</span> datos_audi <span class="sc">%&gt;%</span> </span>
+<span id="cb7-156"><a href="#cb7-156"></a>  <span class="fu">filter</span>(model <span class="sc">%in%</span> modelos_filtrados)</span>
+<span id="cb7-157"><a href="#cb7-157"></a></span>
+<span id="cb7-158"><a href="#cb7-158"></a><span class="co"># Crea el gráfico circular mejorado</span></span>
+<span id="cb7-159"><a href="#cb7-159"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos_filtrados, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
+<span id="cb7-160"><a href="#cb7-160"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-161"><a href="#cb7-161"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb7-162"><a href="#cb7-162"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Paired"</span>) <span class="sc">+</span></span>
+<span id="cb7-163"><a href="#cb7-163"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-164"><a href="#cb7-164"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proporción de Modelos de Coches Audi"</span>,</span>
+<span id="cb7-165"><a href="#cb7-165"></a>       <span class="at">fill =</span> <span class="st">"Modelo"</span>,</span>
+<span id="cb7-166"><a href="#cb7-166"></a>       <span class="at">caption =</span> <span class="st">"Modelos con proporción superior al umbral"</span>) <span class="sc">+</span></span>
+<span id="cb7-167"><a href="#cb7-167"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb7-168"><a href="#cb7-168"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb7-169"><a href="#cb7-169"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">10</span>))</span>
+<span id="cb7-170"><a href="#cb7-170"></a></span>
+<span id="cb7-171"><a href="#cb7-171"></a><span class="in">```</span></span>
+<span id="cb7-172"><a href="#cb7-172"></a></span>
+<span id="cb7-173"><a href="#cb7-173"></a>---</span>
+<span id="cb7-174"><a href="#cb7-174"></a></span>
+<span id="cb7-175"><a href="#cb7-175"></a><span class="fu">## Gráfico para precio, año, kilometraje</span></span>
+<span id="cb7-176"><a href="#cb7-176"></a></span>
+<span id="cb7-177"><a href="#cb7-177"></a>De todos los gráficos, sin duda este es el mas revelador y el que más me gusta debido a que se puede analizar precio, año, kilometraje y modelo en un mismo gráfico, destacar de nuevo que lo hemos hecho a partir de una muestra ya que si no el gráfico estaría muy saturado</span>
+<span id="cb7-178"><a href="#cb7-178"></a></span>
+<span id="cb7-179"><a href="#cb7-179"></a>como podemos ver, hay una correlación directa entre el precio y el año, cuantos mas años tiene el coche mas valor pierde, despues también podemos ver como los coches con menos años tienen menos kilómetros (se determina con el tamaño de las burbujas) y ademas cuantos menos años tienen mayor es su valor.</span>
+<span id="cb7-180"><a href="#cb7-180"></a></span>
+<span id="cb7-181"><a href="#cb7-181"></a>tambien vemos como los modelos tales como el Q7 son los más caros y el A3 los mas baratos</span>
+<span id="cb7-184"><a href="#cb7-184"></a><span class="in">```{r}</span></span>
+<span id="cb7-185"><a href="#cb7-185"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-186"><a href="#cb7-186"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-187"><a href="#cb7-187"></a></span>
+<span id="cb7-188"><a href="#cb7-188"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-189"><a href="#cb7-189"></a></span>
+<span id="cb7-190"><a href="#cb7-190"></a><span class="co"># Asegúrate de que las variables de interés sean numéricas</span></span>
+<span id="cb7-191"><a href="#cb7-191"></a>datos_filtrados<span class="sc">$</span>price <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(datos_filtrados<span class="sc">$</span>price)</span>
+<span id="cb7-192"><a href="#cb7-192"></a>datos_filtrados<span class="sc">$</span>mileage <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(datos_filtrados<span class="sc">$</span>mileage)</span>
+<span id="cb7-193"><a href="#cb7-193"></a>datos_filtrados<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(datos_filtrados<span class="sc">$</span>year)</span>
+<span id="cb7-194"><a href="#cb7-194"></a></span>
+<span id="cb7-195"><a href="#cb7-195"></a><span class="co"># Convierte la variable 'year' a formato de fecha</span></span>
+<span id="cb7-196"><a href="#cb7-196"></a>datos_filtrados<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(datos_filtrados<span class="sc">$</span>year, <span class="st">"-01-01"</span>))</span>
+<span id="cb7-197"><a href="#cb7-197"></a><span class="co"># Muestra un subconjunto aleatorio de datos (ajusta el tamaño según sea necesario)</span></span>
+<span id="cb7-198"><a href="#cb7-198"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># Para reproducibilidad</span></span>
+<span id="cb7-199"><a href="#cb7-199"></a>datos_muestreados <span class="ot">&lt;-</span> datos_filtrados[<span class="fu">sample</span>(<span class="fu">nrow</span>(datos_filtrados), <span class="dv">250</span>), ]</span>
+<span id="cb7-200"><a href="#cb7-200"></a></span>
+<span id="cb7-201"><a href="#cb7-201"></a><span class="co"># Crea el gráfico de burbujas mejorado</span></span>
+<span id="cb7-202"><a href="#cb7-202"></a><span class="fu">ggplot</span>(datos_muestreados, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> price, <span class="at">size =</span> mileage, <span class="at">color =</span> <span class="fu">factor</span>(model))) <span class="sc">+</span></span>
+<span id="cb7-203"><a href="#cb7-203"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">stroke =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-204"><a href="#cb7-204"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
+<span id="cb7-205"><a href="#cb7-205"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb7-206"><a href="#cb7-206"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Burbujas para Precio, Kilometraje y Año"</span>,</span>
+<span id="cb7-207"><a href="#cb7-207"></a>       <span class="at">x =</span> <span class="st">"Año"</span>,</span>
+<span id="cb7-208"><a href="#cb7-208"></a>       <span class="at">y =</span> <span class="st">"Precio"</span>,</span>
+<span id="cb7-209"><a href="#cb7-209"></a>       <span class="at">size =</span> <span class="st">"Kilometraje"</span>,</span>
+<span id="cb7-210"><a href="#cb7-210"></a>       <span class="at">color =</span> <span class="st">"Año"</span>) <span class="sc">+</span></span>
+<span id="cb7-211"><a href="#cb7-211"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-212"><a href="#cb7-212"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb7-213"><a href="#cb7-213"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"black"</span>),  <span class="co"># Ajusta el fondo de la leyenda</span></span>
+<span id="cb7-214"><a href="#cb7-214"></a>        <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"black"</span>)) <span class="sc">+</span>  <span class="co"># Ajusta el fondo de las teclas de la leyenda</span></span>
+<span id="cb7-215"><a href="#cb7-215"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> model), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">nudge_x =</span> <span class="fl">0.2</span>, <span class="at">nudge_y =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-216"><a href="#cb7-216"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>)  <span class="co"># Oculta la leyenda de color</span></span>
+<span id="cb7-217"><a href="#cb7-217"></a></span>
+<span id="cb7-218"><a href="#cb7-218"></a></span>
+<span id="cb7-219"><a href="#cb7-219"></a><span class="in">```</span></span>
+<span id="cb7-220"><a href="#cb7-220"></a></span>
+<span id="cb7-221"><a href="#cb7-221"></a></span>
+<span id="cb7-222"><a href="#cb7-222"></a>---</span>
+<span id="cb7-223"><a href="#cb7-223"></a></span>
+<span id="cb7-224"><a href="#cb7-224"></a><span class="fu">## Correlación entre variables</span></span>
+<span id="cb7-225"><a href="#cb7-225"></a>Este gráfico seria un resumen de la correlacion entre ls distintas variables que estabamos analizando, como podemos ver, muchas de nuestras explicaciones se cumplen , como por ejemplo la relacion positiva entre precio y año de fabricacion, o la correlación negativa entre el año y el kilometraje, tambien esa relación negativa entre el precio y el kilometraje...</span>
+<span id="cb7-226"><a href="#cb7-226"></a></span>
+<span id="cb7-227"><a href="#cb7-227"></a>una de las variables que no hemos observado es el tamaño del motor, que como podemos ver tiene una relación positiva con el precio, los coches con motor mas grandes tambien son más caros</span>
+<span id="cb7-228"><a href="#cb7-228"></a></span>
+<span id="cb7-229"><a href="#cb7-229"></a>otra variable interesante es el consumo que en este caso viene en millas por galón, podemos ver que tiene correlación negativa con el precio del coche, hay que pensar que un coche que gasta mucho combustible es un problema para mantanerlo y esto se tiene en cuenta a la hora de comprar un coche</span>
+<span id="cb7-232"><a href="#cb7-232"></a><span class="in">```{r}</span></span>
+<span id="cb7-233"><a href="#cb7-233"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-234"><a href="#cb7-234"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-235"><a href="#cb7-235"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-236"><a href="#cb7-236"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb7-237"><a href="#cb7-237"></a></span>
+<span id="cb7-238"><a href="#cb7-238"></a><span class="co"># Calcula la matriz de correlación</span></span>
+<span id="cb7-239"><a href="#cb7-239"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos_audi[, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"price"</span>, <span class="st">"mileage"</span>, <span class="st">"tax"</span>, <span class="st">"mpg"</span>, <span class="st">"engineSize"</span>)])</span>
+<span id="cb7-240"><a href="#cb7-240"></a></span>
+<span id="cb7-241"><a href="#cb7-241"></a><span class="co"># Cambia los nombres de las filas y columnas</span></span>
+<span id="cb7-242"><a href="#cb7-242"></a><span class="fu">rownames</span>(cor_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Año"</span>, <span class="st">"Precio"</span>, <span class="st">"Kilometraje"</span>, <span class="st">"Impuesto"</span>, <span class="st">"MPG"</span>, <span class="st">"Tamaño del Motor"</span>)</span>
+<span id="cb7-243"><a href="#cb7-243"></a><span class="fu">colnames</span>(cor_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Año"</span>, <span class="st">"Precio"</span>, <span class="st">"Kilometraje"</span>, <span class="st">"Impuesto"</span>, <span class="st">"MPG"</span>, <span class="st">"Tamaño del Motor"</span>)</span>
+<span id="cb7-244"><a href="#cb7-244"></a></span>
+<span id="cb7-245"><a href="#cb7-245"></a><span class="co"># Configura un color más agradable para el mapa de calor</span></span>
+<span id="cb7-246"><a href="#cb7-246"></a>color_palette <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#BB4444"</span>, <span class="st">"#EE9988"</span>, <span class="st">"#FFFFFF"</span>, <span class="st">"#77AADD"</span>, <span class="st">"#4477AA"</span>))</span>
+<span id="cb7-247"><a href="#cb7-247"></a></span>
+<span id="cb7-248"><a href="#cb7-248"></a><span class="co"># Crea el mapa de calor</span></span>
+<span id="cb7-249"><a href="#cb7-249"></a><span class="fu">corrplot</span>(cor_matrix, </span>
+<span id="cb7-250"><a href="#cb7-250"></a>         <span class="at">method =</span> <span class="st">"color"</span>, </span>
+<span id="cb7-251"><a href="#cb7-251"></a>         <span class="at">col =</span> <span class="fu">color_palette</span>(<span class="dv">200</span>),</span>
+<span id="cb7-252"><a href="#cb7-252"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb7-253"><a href="#cb7-253"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb7-254"><a href="#cb7-254"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
+<span id="cb7-255"><a href="#cb7-255"></a>         <span class="at">diag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-256"><a href="#cb7-256"></a></span>
+<span id="cb7-257"><a href="#cb7-257"></a><span class="in">```</span></span>
+<span id="cb7-258"><a href="#cb7-258"></a></span>
+<span id="cb7-259"><a href="#cb7-259"></a>---</span>
+<span id="cb7-260"><a href="#cb7-260"></a></span>
+<span id="cb7-261"><a href="#cb7-261"></a><span class="fu">## Bonus track: grafico problematico</span></span>
+<span id="cb7-262"><a href="#cb7-262"></a></span>
+<span id="cb7-263"><a href="#cb7-263"></a>Este grafico lo añado como un extra ya que sin duda ha sido el más problematico, no me dejaba renderizar el archivo QMD, por lo que la solución que decidi tomar es guardar el gráfico en un HTML y añadirlo al QMD.</span>
+<span id="cb7-264"><a href="#cb7-264"></a></span>
+<span id="cb7-265"><a href="#cb7-265"></a>Este gráfico es el mas divertido que he hecho ya que ese efecto 3D junto a la posibilidad de poder moverse es muy atractivo.</span>
+<span id="cb7-266"><a href="#cb7-266"></a>Por otro lado también destacar la posibilidad de ver las características de cada punto solo con pasar el raton por encima.</span>
+<span id="cb7-267"><a href="#cb7-267"></a></span>
+<span id="cb7-268"><a href="#cb7-268"></a><span class="kw">&lt;iframe</span> <span class="er">src</span><span class="ot">=</span><span class="st">"scatter3d_audi_mejorado.html"</span> <span class="er">width</span><span class="ot">=</span><span class="st">"800"</span> <span class="er">height</span><span class="ot">=</span><span class="st">"600"</span><span class="kw">&gt;&lt;/iframe&gt;</span></span>
+<span id="cb7-269"><a href="#cb7-269"></a></span>
+<span id="cb7-270"><a href="#cb7-270"></a></span>
+<span id="cb7-271"><a href="#cb7-271"></a>----------------------</span>
+<span id="cb7-272"><a href="#cb7-272"></a></span>
+<span id="cb7-273"><a href="#cb7-273"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb7-274"><a href="#cb7-274"></a></span>
+<span id="cb7-275"><a href="#cb7-275"></a><span class="fu">### Información sobre la sesión</span></span>
+<span id="cb7-276"><a href="#cb7-276"></a></span>
+<span id="cb7-277"><a href="#cb7-277"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
+<span id="cb7-278"><a href="#cb7-278"></a></span>
+<span id="cb7-281"><a href="#cb7-281"></a><span class="in">```{r}</span></span>
+<span id="cb7-282"><a href="#cb7-282"></a><span class="co">#| echo: false</span></span>
+<span id="cb7-283"><a href="#cb7-283"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-284"><a href="#cb7-284"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
+<span id="cb7-285"><a href="#cb7-285"></a><span class="in">```</span></span>
+<span id="cb7-286"><a href="#cb7-286"></a></span>
+<span id="cb7-287"><a href="#cb7-287"></a></span>
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">© 2024 Aarón Alarcón</div>   
+    <div class="nav-footer-center">Hecho con <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/<tu-usuario-github>">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="aaron:<luisa9>@alumni.uv.es">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

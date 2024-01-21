@@ -1,0 +1,104 @@
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.me-auto > li > a > i {
+    color: #ff0000;  /* Cambia "#ff0000" al color deseado en formato hexadecimal o nombre de color */
+}
+
+
+#quarto-header > nav > div {
+    background-color: #0a0a0a;  /* Cambia "#00ff00" al color deseado en formato hexadecimal o nombre de color */
+}
+
+#quarto-header > nav {
+    background-color: #292929;  /* Cambia "#ff0000" al color deseado en formato hexadecimal o nombre de color */
+}
+
+#quarto-header .navbar-nav li.nav-item:hover,
+#quarto-header .navbar-brand-container a.navbar-brand:hover {
+    background-color: #292929;  /* Cambia el color de fondo al pasar el ratón */
+    color: black;  /* Cambia el color del texto al pasar el ratón */
+}
+
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.ms-auto > li:nth-child(1) > a > span:hover,
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.ms-auto > li:nth-child(2) > a:hover,
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.ms-auto > li:nth-child(3) > a > i:hover {
+    color: black;  /* Cambia el color del texto al pasar el ratón */
+}
+
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.ms-auto > li:nth-child(1) > a > span:active {
+    color: black ;  /* Reemplaza "tu-color" con el color deseado */
+}
+
+
+.footer .nav-footer-right .bi {
+    color: #0a0a0a;  /* Cambia "#ff0000" al color deseado en formato hexadecimal o nombre de color */
+}
+
+#quarto-content {
+    background-color: #f0f0f0;  /* Cambia el color de fondo según tus preferencias */
+    padding: 20px;  /* Ajusta el relleno según tus preferencias */
+    border: 2px solid #ccc;  /* Ajusta el color y ancho del borde según tus preferencias */
+    border-radius: 10px;  /* Añade bordes redondeados según tus preferencias */
+}
+
+#quarto-content p {
+    color: #333;  /* Cambia el color del texto de los párrafos según tus preferencias */
+}
+
+#quarto-content a {
+    color: #ff0000;  /* Cambia el color de los enlaces según tus preferencias */
+    text-decoration: none;  /* Elimina el subrayado de los enlaces */
+    font-weight: bold;  /* Añade negrita a los enlaces */
+}
+
+#quarto-content a:hover {
+    color: #ff9900;  /* Cambia el color cuando se pasa el ratón sobre los enlaces según tus preferencias */
+}
+
+#title-block-header {
+    color: #333;  /* Cambia el color del texto según tus preferencias */
+}
+
+#title-block-header h1 {
+    font-size: 3em;  /* Ajusta el tamaño de la fuente según tus preferencias */
+    font-weight: bold;  /* Añade negrita al texto del h1 */
+}
+
+#quarto-content > div > div > div {
+    border: 2px solid #333;  /* Ajusta el grosor y el color del contorno según tus preferencias */
+    padding: 20px;  /* Ajusta el relleno según tus preferencias */
+}
+
+#title-block-header > div.quarto-title-banner.page-columns.page-full {
+    background-color: #0a0a0a;  /* Reemplaza #ff0000 con el color que desees */
+}
+
+
+#quarto-margin-sidebar {
+    background-color: #f4f4f4;  /* Cambia el color de fondo */
+    padding: 20px;  /* Ajusta el relleno */
+    border-radius: 10px;  /* Agrega esquinas redondeadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Agrega una sombra */
+}
+
+#quarto-margin-sidebar h2 {
+    font-size: 1.5em;  /* Ajusta el tamaño del título del ítem del índice */
+    color: #333;  /* Cambia el color del título */
+    margin-bottom: 10px;  /* Ajusta el espacio inferior entre los títulos */
+}
+
+#quarto-margin-sidebar ul {
+    list-style-type: none;  /* Quita los puntos de la lista */
+    padding: 0;  /* Elimina el relleno de la lista */
+}
+
+#quarto-margin-sidebar li {
+    margin-bottom: 5px;  /* Ajusta el espacio inferior entre los elementos de la lista */
+}
+
+#quarto-margin-sidebar a {
+    color: #ff0000;  /* Cambia el color de los enlaces del índice */
+    text-decoration: none;  /* Quita el subrayado de los enlaces */
+}
+
+#quarto-margin-sidebar a:hover {
+    text-decoration: underline;  /* Añade subrayado al pasar el ratón sobre los enlaces */
+}
